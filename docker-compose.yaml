@@ -13,7 +13,12 @@ services:
     env_file: .env
     environment:
       DEBUG: "true"
-    command: /usr/local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
+    # docker_django has not been created yet so this obviously crashes on the service
+    # so how do I create the project before this service runs through the
+    # container itself?
+    # tried using this command but nothing happens
+    # docker-compose run web django-admin startproject django_project .
+    # command: /usr/local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
 
   nginx:
     restart: always
