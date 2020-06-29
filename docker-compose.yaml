@@ -19,6 +19,7 @@ services:
     # tried using this command but nothing happens
     # docker-compose run web django-admin startproject django_project .
     # command: /usr/local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
+    # command: python manage.py runserver 0.0.0.0:8000
 
   nginx:
     restart: always
@@ -37,6 +38,10 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
 volumes:
   web-django:
